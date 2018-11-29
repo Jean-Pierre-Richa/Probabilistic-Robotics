@@ -14,7 +14,7 @@
 # outputs
 # [mu, sigma] are mean and covariance of the estimate after transition
 
-function [mu, sigma] = prediction(mu, sigma, transition)
+function [mu, sigma] = prediction_bearing_only(mu, sigma, transition)
 
 
 	u = transition.v;
@@ -35,9 +35,9 @@ function [mu, sigma] = prediction(mu, sigma, transition)
 
 	%Jacobian A
 	% A = [%TODO];
-	A=[1, 0, -u_x*sin(mu_theta);
-		 0, 1, -u_x*cos(mu_theta);
-		 0, 0, 			 					 1];
+	A = [1, 0, -u_x*sin(mu_theta);
+	 		 0, 1,  u_x*cos(mu_theta);
+	 		 0, 0, 								 1];
 
 	%Jacobian B
 	%B = [%TODO];
@@ -55,7 +55,7 @@ function [mu, sigma] = prediction(mu, sigma, transition)
 						 0, noise^2+w_noise];
 
 	%predict sigma
-	%sigma = %TODO; Slides 07, slide 18.
-	sigma = A*sigma*A' + B*sigma_u*B'
+	%sigma = %TODO;
+	sigma = A*sigma*A' + B*sigma_u*B';
 
 end

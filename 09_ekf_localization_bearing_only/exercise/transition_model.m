@@ -15,7 +15,7 @@
 %   mu_prime(2): y coord of robot w.r.t world, after transition
 %   mu_prime(3): angle of robot w.r.t world, after transition
 
-function mu = transition_model(mu, u)
+function mu_prime = transition_model(mu, u)
 
 	mu_prime = mu;
 	mu_x = mu(1);
